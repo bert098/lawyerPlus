@@ -9,10 +9,27 @@ export default function (props) {
   }
   const login = async (e) => {
     e.preventDefault()
-    console.log('about to get')
-    let x = await axios.get("http://localhost:5000/login")
+    let email = document.getElementById("emailAddressSignIn").value
+    let password = document.getElementById("passwordSignIn").value
+    let x = await axios.get("http://localhost:5000/login", {params:{
+      email: email,
+      password: password
+    }})
     console.log(x.data)
   }
+  const signUp = async (e) => {
+    e.preventDefault()
+    let email = document.getElementById("emailAddressSignUp").value
+    let password = document.getElementById("passwordSignUp").value
+    let username = document.getElementById("username").value
+    let x = await axios.post("http://localhost:5000/login", {
+      email: email,
+      username: username,
+      password: password
+    })
+    console.log(x.data)
+  }
+
 
   if (authMode === "signin") {
     return (
@@ -29,6 +46,7 @@ export default function (props) {
             <div className="form-group mt-3">
               <label>Email address</label>
               <input
+                id="emailAddressSignIn"
                 type="email"
                 className="form-control mt-1"
                 placeholder="Enter email"
@@ -37,6 +55,7 @@ export default function (props) {
             <div className="form-group mt-3">
               <label>Password</label>
               <input
+                id="passwordSignIn"
                 type="password"
                 className="form-control mt-1"
                 placeholder="Enter password"
@@ -68,9 +87,9 @@ export default function (props) {
             </span>
           </div>
           <div className="form-group mt-3">
-            <label>Full Name</label>
+            <label>Username</label>
             <input
-              type="email"
+              id="username"
               className="form-control mt-1"
               placeholder="e.g Jane Doe"
             />
@@ -78,6 +97,7 @@ export default function (props) {
           <div className="form-group mt-3">
             <label>Email address</label>
             <input
+              id="emailAddressSignUp"
               type="email"
               className="form-control mt-1"
               placeholder="Email Address"
@@ -86,13 +106,14 @@ export default function (props) {
           <div className="form-group mt-3">
             <label>Password</label>
             <input
+              id="passwordSignUp"
               type="password"
               className="form-control mt-1"
               placeholder="Password"
             />
           </div>
           <div className="d-grid gap-2 mt-3">
-            <button  className="btn btn-primary">
+            <button  onClick={signUp} className="btn btn-primary">
               Submit
             </button>
           </div>
