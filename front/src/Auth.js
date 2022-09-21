@@ -7,7 +7,8 @@ export default function (props) {
   const changeAuthMode = () => {
     setAuthMode(authMode === "signin" ? "signup" : "signin")
   }
-  const login = async () => {
+  const login = async (e) => {
+    e.preventDefault()
     console.log('about to get')
     let x = await axios.get("http://localhost:5000/login")
     console.log(x.data)
@@ -91,7 +92,7 @@ export default function (props) {
             />
           </div>
           <div className="d-grid gap-2 mt-3">
-            <button type="submit" className="btn btn-primary">
+            <button  className="btn btn-primary">
               Submit
             </button>
           </div>
