@@ -12,7 +12,7 @@ export class User {
     @Column()
     username: string
 
-    @Column()
-    password: number
+    @Column({ nullable: true })
+    password: string
 
 }

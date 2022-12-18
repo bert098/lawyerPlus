@@ -44,18 +44,15 @@ class LoginController {
   }
  
   createAPost = async (request: express.Request, response: express.Response) => {
-    AppDataSource.initialize().then(async () => {
-
-      console.log("Inserting a new user into the database...")
-      const user = new User()
-      user.email = request.body.email
-      user.username = request.body.username
-      user.password = 23
-      await AppDataSource.manager.save(user)
-      console.log('here 2')
-      const users = await AppDataSource.manager.find(User)
-      response.json(users);
-  }).catch(error => console.log(error))  
+  const user = new User()
+  user.email = request.body.email
+  user.username = request.body.username
+  user.password = request.body.password.toString()
+  console.log(request.body)
+  await AppDataSource.manager.save(user)
+  console.log('here 2')
+  const users = await AppDataSource.manager.find(User)
+  response.json(users);
   }
 }
  

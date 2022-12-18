@@ -3,6 +3,7 @@ import { DataSource } from "typeorm"
 import { User } from "./entity/User"
 
 export const AppDataSource = new DataSource({
+    migrationsTableName: 'migrations',
     type: "postgres",
     host: "localhost",
     port: 5432,
@@ -12,6 +13,14 @@ export const AppDataSource = new DataSource({
     synchronize: true,
     logging: false,
     entities: [User],
-    migrations: [],
-    subscribers: [],
+    migrations: [
+        "migration/**/*{.js,.ts}"
+     ],
+    subscribers: [
+        "src/subscriber/**/*{.js,.ts}"
+     ],
 })
+AppDataSource.initialize().then(async () => {
+    console.log("Data Source has been initialized!")
+    AppDataSource.synchronize()
+}).catch(error => console.log(error))  
