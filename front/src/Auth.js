@@ -11,7 +11,7 @@ export default function (props) {
     e.preventDefault()
     let email = document.getElementById("emailAddressSignIn").value
     let password = document.getElementById("passwordSignIn").value
-    let x = await axios.get("http://localhost:5000/login", {params:{
+    let x = await axios.get("http://localhost:5000/user/login", {params:{
       email: email,
       password: password
     }})
@@ -22,7 +22,7 @@ export default function (props) {
     let email = document.getElementById("emailAddressSignUp").value
     let password = document.getElementById("passwordSignUp").value
     let username = document.getElementById("username").value
-    let x = await axios.post("http://localhost:5000/login", {
+    let x = await axios.post("http://localhost:5000/user", {
       email: email,
       username: username,
       password: password
