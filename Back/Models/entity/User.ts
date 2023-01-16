@@ -12,7 +12,10 @@ export class User {
     @Column()
     username: string
 
-    @Column({ nullable: true })
+    @Column()
     password: string
+
+    @Column({ nullable: true })
+    token: string
 
 }

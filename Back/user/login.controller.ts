@@ -1,11 +1,13 @@
 import * as express from 'express';
 import { User } from "../Models/entity/User"
 import { AppDataSource } from "../Models/data-source"
+const jwt = require("jsonwebtoken");
 const bcrypt = require ('bcrypt');
  
 class LoginController {
   public createPath = '/user';
   public loginPath = '/user/login';
+  public tokenPath = '/user/token';
   public router = express.Router();
 
  
@@ -16,6 +18,7 @@ class LoginController {
   public intializeRoutes() {
     this.router.get(this.loginPath, this.login);
     this.router.post(this.createPath, this.createUser);
+    this.router.get(this.tokenPath, this.getUserByToken);
   }
  
   login = async (request: express.Request, response: express.Response) => {
@@ -29,11 +32,17 @@ class LoginController {
         message: "does not exsist"
       })
     }
-    console.log(user)
     try{
       if(await bcrypt.compare(request.query.password, user.password)){
+        const token = jwt.sign(
+          { user_id: user.id, user_email: user.email },
+          "12345",
+        );
+        user.token = token;
+        await AppDataSource.manager.save(user)
         response.status(200).json({
-          message: "log in successful"
+          message: "log in successful",
+          token: token
         })
       }
       else{
@@ -53,13 +62,26 @@ class LoginController {
       user.email = request.body.email
       user.username = request.body.username
       user.password = await hashPassword(request.body.password.toString())
-      console.log(request.body)
       await AppDataSource.manager.save(user)
-      console.log('here 2')
-      const users = await AppDataSource.manager.find(User)
-      response.json(users);
+      response.json(user.email);
     }catch{
       response.status(500).send()
+    }
+  }
+  getUserByToken = async (request: express.Request, response: express.Response) => {
+    let user = await AppDataSource
+    .getRepository(User)
+    .createQueryBuilder("user")
+    .where("user.token = :token", {token: request.query.token})
+    .getOne()
+    if(!user){
+      response.status(400).json({
+        message: "does not exsist"
+      })
+    } else{
+      response.status(200).json({
+        user: user
+      })
     }
   }
 }
