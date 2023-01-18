@@ -1,14 +1,13 @@
 import "../../styles/textBox.css"
+import StartButton from "./StartButton"
 
 export default function textBox(props) {
   return (
     <div className="hero-box">
-      <div className="card-text">{props.text}</div>
+      <h2 className="card-text">{props.text}</h2>
       <div className="sub-text">{props.sub_text}</div>
       <span>
-      <button className="search-button">
-        Find A Lawyer
-      </button>
+        <StartButton/>
       </span>
     </div>
   )
