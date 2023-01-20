@@ -8,7 +8,9 @@ import Card from "./plugins/Card"
 import { FcMoneyTransfer } from "react-icons/fc";
 import { FaHandsHelping } from "react-icons/fa";
 import { FcStatistics } from "react-icons/fc";
-import StartButton from "./plugins/StartButton"
+import Button from "./plugins/Button"
+import ContactUs from "./plugins/ContactUs";
+import "../styles/mobile_css/mobilehomepage.css"
 
 export default function (props) {
   return (
@@ -37,9 +39,15 @@ export default function (props) {
             go through tradtional means, a lawyer can also schedule meetings and see various reports on
             how your business is growing. Keep your business organized and try us today
           </p>
-          <StartButton/>
+          <Button text="Get Started" link="/login"/>
         </div>
         <img src={deal}></img>
+      </div>
+      <div className="contact-us">
+      <ContactUs/>
+      </div>
+      <div className="brand">
+        <a>LawyerUp&nbsp;</a> your way!
       </div>
       </div>
     </div>

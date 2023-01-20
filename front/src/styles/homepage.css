@@ -19,7 +19,7 @@
   .content{
     margin-left: 10%;
     margin-right: 10%;
-    padding-bottom: 50px;
+    padding-bottom: 8rem;
   }
   .content h1{
     padding-top: 30px;
@@ -36,7 +36,7 @@
   .split-content{
     flex-wrap: nowrap;
     display: flex;
-    padding-top: 100px;
+    padding-top: 8rem;
     justify-content: space-between;
     margin-left: 10%;
     margin-right: 10%;
@@ -53,4 +53,22 @@
   }
   .text-content h2{
     margin-bottom: 20px;
+  }
+  .text-content button{
+    margin-top: 10px;
+  }
+  .contact-us{
+    margin-top: 8rem;
+    justify-content: center;
+    display: flex;
+  }
+  .brand{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding-top: 8rem;
+    font-size: 30px;
+  }
+  .brand a{
+    color: #590e20!important;
   }

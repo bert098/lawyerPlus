@@ -1,5 +1,6 @@
 import "../../styles/textBox.css"
-import StartButton from "./StartButton"
+import Button from "./Button"
+import "../../styles/mobile_css/mobiletextbox.css"
 
 export default function textBox(props) {
   return (
@@ -7,7 +8,7 @@ export default function textBox(props) {
       <h2 className="card-text">{props.text}</h2>
       <div className="sub-text">{props.sub_text}</div>
       <span>
-        <StartButton/>
+        <Button text="Get Started" link="/login" />
       </span>
     </div>
   )

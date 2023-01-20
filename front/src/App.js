@@ -4,19 +4,35 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Auth from "./components/Auth"
 import HomePage from "./components/HomePage"
 import Navbar from './components/NavBar/Navbar';
-import {useState } from 'react';
+import MobileSideNav from "./components/NavBar/MobileSidenav"
+import Footer from "./components/Footer/Footer"
+import { useState, useEffect } from 'react';
 
 
 
 function App() {
+  const [width, setWidth] = useState (window.innerWidth);
+
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    }
+  }, []);
+
+  const isMobile = width <= 768;
   const [auth, setAuth] = useState(false);
   return (
     <BrowserRouter>
-     <Navbar auth={auth} setAuth={setAuth}/>
+    {isMobile ? <MobileSideNav/> : <Navbar auth={auth} setAuth={setAuth}/>}
       <Routes>
         <Route path="/login" element={<Auth setAuth={setAuth} />} />
-        <Route path="/" element={<HomePage/>} />
+        <Route path="/" element={<HomePage />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }

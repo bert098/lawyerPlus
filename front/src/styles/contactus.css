@@ -1,15 +1,11 @@
-.hero-box{
+.contact-us-box{
     border: 2px solid #EDEADE;
     background-color: #EDEADE;
-    width: 400px;
-    height: 400px;
-    position: absolute;
-    top: 50%;
-    left: 25%;
-    transform: translate(-50%, -50%);
+    height: 300px;
     font-size:30px;
+    width: 100%;
     opacity: 0.8;
-    text-align: left;
+    text-align: center;
 }
 .card-text {
     margin: 45px;

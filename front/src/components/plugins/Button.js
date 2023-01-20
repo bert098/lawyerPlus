@@ -1,10 +1,10 @@
 import "../../styles/startbutton.css"
 
-export default function StartButton(props) {
+export default function Button(props) {
   return (
     <div>
       <button className="search-button">
-        Get Started
+        {props.text}
       </button>
     </div>
   )

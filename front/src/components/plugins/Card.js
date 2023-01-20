@@ -1,6 +1,5 @@
 import "../../styles/cards.css"
-
-import { FcMoneyTransfer } from "react-icons/fc";
+import "../../styles/mobile_css/mobilecard.css"
 
 export default function Card(props) {
   return (
