@@ -7,6 +7,7 @@ import Navbar from './components/NavBar/Navbar';
 import MobileSideNav from "./components/NavBar/MobileSidenav"
 import Footer from "./components/Footer/Footer"
 import { useState, useEffect } from 'react';
+import DashBoard from "./components/DashBoard"
 
 
 
@@ -30,6 +31,7 @@ function App() {
     {isMobile ? <MobileSideNav/> : <Navbar auth={auth} setAuth={setAuth}/>}
       <Routes>
         <Route path="/login" element={<Auth setAuth={setAuth} />} />
+        <Route path="/dashboard" element={<DashBoard auth={auth}/>} />
         <Route path="/" element={<HomePage />} />
       </Routes>
       <Footer />

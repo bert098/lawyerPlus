@@ -1,0 +1,9 @@
+.username{
+    padding-top: 30px;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+.buttons{
+    padding-left: 300px;
+}

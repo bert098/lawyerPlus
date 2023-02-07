@@ -21,10 +21,10 @@ export default function Navbar(props) {
               <a href="/contact">Contact</a>
             </li>
             <li>
-              <a href="/contact">Account Settings</a>
+              <a href="/account-settings">Account Settings</a>
             </li>
             <li>
-              <a href="/contact">Dashboard</a>
+              <a href="/dashboard">Dashboard</a>
             </li>
           </ul>
         </div>

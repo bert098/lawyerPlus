@@ -2,27 +2,26 @@
 import "../../styles/navbar.css"
 import {useState, useLayoutEffect  } from 'react';
 import axios from "axios";
+import getUser from "../utils/getUser";
 export default  function NavbarButton(props) {
   const [user,setUser]=useState(null)
-  let getUser = null
+  let getUserCall = null
   useLayoutEffect(() => {
     const token = localStorage.getItem('token');
     if(token){
       props.setAuth(true)
     }
-  getUser = async () =>{
-    let res = await axios.get("http://localhost:5000/user/token", {params:{
-      token: token
-    }})
+    getUserCall = async () =>{
+    let res = await getUser(token)
     if(res.status === 200){
       setUser(res.data.user)
     } 
   }
-  getUser()
+  getUserCall()
 }, []);
   if(props.auth && !user){
-    if(getUser){
-      getUser()
+    if(getUserCall){
+      getUserCall()
     }
     return (
       <div>
