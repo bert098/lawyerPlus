@@ -21,7 +21,7 @@ export default function (props) {
         }
     }
     let newCustomer = () => {
-        console.log('add client')
+        console.log('client')
     }
     getUserCall()
     if (user) {
